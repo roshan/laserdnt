@@ -19,3 +19,14 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     console.log("Blacklist didn't change");
   }
 });
+
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function(details) {
+    var host = new URL(details.url).host;
+    console.log("Host is " + host);
+  },
+  { urls: ["*://*/*"] },
+  [ 'blocking', 'requestHeaders' ]
+);
+
+
