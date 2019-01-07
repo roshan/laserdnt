@@ -10,3 +10,12 @@ chrome.storage.sync.get({
   blacklistedHosts = prepBlacklist(items.laserDntHosts);
   console.log("Loaded blacklist: " + Array.from(blacklistedHosts.values()));
 });
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  if ('laserDntHosts' in changes) {
+    blacklistedHosts = prepBlacklist(changes['laserDntHosts'].newValue);
+    console.log("Blacklisted hosts are: " + Array.from(blacklistedHosts.values()));
+  } else {
+    console.log("Blacklist didn't change");
+  }
+});
