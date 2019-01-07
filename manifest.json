@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "LaserDNT",
+  "description": "This extension allows you to send DNT information to some hosts but not others",
+  "version": "0.1",
+
+  "permissions": [
+    "*://*/*",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+
+  "background": {
+    "scripts": ["laserdnt.js"],
+    "persistent": true
+  },
+
+  "options_page": "options.html"
+}
