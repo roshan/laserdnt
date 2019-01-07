@@ -25,8 +25,11 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     var host = new URL(details.url).host;
     if (blacklistedHosts.has(host)) {
       console.log("Blacklisted host: " + host);
+      details.requestHeaders.push({"name": "DNT", "value": "1"});
+      return { requestHeaders: details.requestHeaders };
     } else {
       console.log("Permitted host: " + host);
+      return {};
     }
   },
   { urls: ["*://*/*"] },
